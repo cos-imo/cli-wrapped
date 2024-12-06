@@ -14,6 +14,10 @@ class CliWrapped:
         self.print_results()
 
 
+    def start_print(self):
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print(pyfiglet.figlet_format("CLI-Wrapped"))
+
     def select_file(self, founds):
         for i in range(len(founds)):
             print(f"\t[{i}] {founds[i]}")
@@ -73,6 +77,14 @@ class CliWrapped:
         for line in self.data:
             if ";" in line:
                 self.commands.append(line.split(";")[1].split(" ")[0])
+
+
+    def print_results(self):
+        self.start_print()
+
+        for i in range(5):
+            print(f"Your n°{i+1} most used command this year was: {Counter(self.commands).most_common()[i][0]}")
+
 
 if __name__=="__main__":
     cliwrapped = CliWrapped()
